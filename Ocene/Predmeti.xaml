@@ -1,0 +1,93 @@
+﻿<Window x:Class="Ocene.Predmeti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocene"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" FontSize="16"
+        Title="Predmeti" Height="400" Width="540.962">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WrapPanel Name="gTip">
+            <Label VerticalAlignment="Center" Visibility="Collapsed">Tip predmeta:</Label>
+            <ComboBox VerticalAlignment="Center" Visibility="Collapsed" Name="cmbVrsta" Margin="5" SelectionChanged="cmbVrsta_SelectionChanged" SelectedIndex="0">
+                <ComboBoxItem>Obicni predmeti</ComboBoxItem>
+                <ComboBoxItem>Vrste izbornih predmeta</ComboBoxItem>
+                <ComboBoxItem>Izborni predmeti</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Visibility="Collapsed" SelectionChanged="cmbPodvrsta_SelectionChanged" Name="cmbPodvrsta" Margin="5" DisplayMemberPath="naziv" SelectedValuePath="id"></ComboBox>
+        </WrapPanel>
+        
+        
+        
+        <ListBox SelectionChanged="lstPredmeti_SelectionChanged" Grid.Row="1" SelectionMode="Single" Name="lstPredmeti" Margin="5" DisplayMemberPath="naziv" FontSize="15" SelectedIndex="0">
+           <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="LightSteelBlue" />
+                    <Setter Property="Margin" Value="2" />
+                    <Setter Property="Padding" Value="2" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DarkRed" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="1" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            
+        </ListBox>
+        <TextBox Name="txtPredmet" FontSize="15" FontWeight="Bold" IsReadOnly="True" Grid.Row="2" Margin="5" Text="{Binding ElementName=lstPredmeti, Path=SelectedValue.naziv, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Grid.Row="4" Name="g1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="btnAdd" IsDefault="True" Click="btnAdd_Click" Margin="8" >
+                <WrapPanel>
+                    <Image Source="slike/add.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Dodaj" />
+                </WrapPanel>
+            </Button>
+            <Button Name="btnEdi" Click="btnEdi_Click" Margin="8" Grid.Column="1">
+                <WrapPanel>
+                    <Image Source="slike/edit.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Izmeni" />
+                </WrapPanel>
+            </Button>
+            <Button Name="btnDel" Click="btnDel_Click" Margin="8" Grid.Column="2">
+                <WrapPanel>
+                    <Image Source="slike/del.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Izbrisi" />
+                </WrapPanel>
+            </Button>
+        </Grid> 
+        <Grid Name="g2" Grid.Row="4" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Name="btnOk" IsDefault="True" Click="btnOk_Click" Content="OK" Margin="8" />
+            <Button Name="btnCanc" Click="btnCanc_Click" Content="Otkazi" Margin="8" Grid.Column="1" />
+        </Grid>
+        <Grid Name="g3" Visibility="Hidden" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button IsDefault="True" Content="Izaberi" Name="btnIzab" Click="btnIzab_Click" Margin="8"  Grid.Column="0"/>
+            <Button  Content="Otkazi" Name="btnIzabC" Click="btnIzabC_Click" Margin="8" Grid.Column="1" />
+        </Grid>
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" Margin="3" />
+    </Grid>
+</Window>

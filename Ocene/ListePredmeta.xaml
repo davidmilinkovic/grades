@@ -1,0 +1,85 @@
+﻿<Window x:Class="Ocene.ListePredmeta" Closing="Window_Closing" FontSize="16"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" WindowState="Maximized"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStartupLocation="CenterScreen"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocene"
+        mc:Ignorable="d"
+        Title="Liste predmeta po smerovima" Height="600" Width="701.166">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Name="odabirGrid">
+        <WrapPanel>
+            <Label Margin="5">Smer:</Label>
+            <ComboBox SelectionChanged="cmbSmer_SelectionChanged" Margin="5" Name="cmbSmer" DisplayMemberPath="naziv" SelectedValuePath="id" SelectedIndex="0" />
+            <Label Margin="5">Razred:</Label>
+            <ComboBox SelectionChanged="cmbSmer_SelectionChanged" Margin="5" SelectedIndex="0" Name="cmbRazred">
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+            <Button Margin="5" Name="btnEdit" Click="btnEdit_Click" HorizontalAlignment="Right">
+                <WrapPanel>
+                    <Image Source="slike/edit.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Izmeni listu " />
+                </WrapPanel>
+            </Button>
+
+        </Grid>
+        <Button Content="Izmeni redosled" Name="btnRed" Click="btnRed_Click" Margin="5" HorizontalAlignment="Center" Visibility="Hidden" />
+        <ListBox IsEnabled="False" Grid.Row="1" Name="lstPredmeti" Margin="5" >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Background" Value="LightSteelBlue" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="AllowDrop" Value="True" />
+                    <Setter Property="Padding" Value="5" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DarkRed" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="LightSteelBlue" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="BorderThickness" Value="1" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Label Content="{Binding Path=naziv }" />
+                        <CheckBox Content="Ulazi u prosek" IsChecked="{Binding Path=prosek}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="2" Name="editGrid" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Content="Dodaj" Name="btnAdd" Click="btnAdd_Click" Margin="5" Grid.Column="0" />
+            <Button Content="Izbrisi" Name="btnDel" Click="btnDel_Click" Margin="5" Grid.Column="1" />
+            <Button Margin="5" Grid.Column="2" Content="Sacuvaj izmene" Name="btnSave" Click="btnSave_Click"  />
+            <Button Margin="5" Grid.Column="3" Content="Otkazi" Name="btnCanc" Click="btnCanc_Click" />
+        </Grid>
+    </Grid>
+</Window>

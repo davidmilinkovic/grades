@@ -1,0 +1,159 @@
+﻿<Window x:Class="Ocene.Ucenici" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" WindowStartupLocation="CenterScreen"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="15" Background="LightGray"
+    Title="Ucenici" Height="695" MinHeight="620" MinWidth="600" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+    <Grid Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel HorizontalAlignment="Right" Grid.Column="1" Name="wrap1">
+            <Button Name="btnAdd" Click="btnAdd_Click" HorizontalAlignment="Left" Margin="5">
+                <WrapPanel>
+                    <Image Source="slike/add.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Dodaj ucenika " />
+                </WrapPanel>
+            </Button>
+            <Button Name="btnEdit" Click="btnEdit_Click" HorizontalAlignment="Left" Margin="5">
+                <WrapPanel>
+                    <Image Source="slike/edit.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Izmeni ucenika " />
+                </WrapPanel>
+            </Button>
+            <Button Name="btnDel" Click="btnDel_Click" HorizontalAlignment="Left" Margin="5">
+                <WrapPanel>
+                    <Image Source="slike/delete.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Izbrisi ucenika " />
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <Border Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" />
+
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="0,0,1,0" />
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,1,0" />
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="0,0,1,0" />
+        <Grid Margin="5" Grid.Row="1">
+            <Grid.Resources>
+                <Style x:Key="ContainerStyle" TargetType="{x:Type GroupItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Expander IsExpanded="False" >
+                                    <Expander.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Background="Gray" Width="{Binding Source=lb_ucenici, Path=ActualWidth, Mode=TwoWay}">
+                                                <Label HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Foreground="White" Content="{Binding Path=Name}" HorizontalAlignment="Stretch" />
+                                            </Border>
+                                        </Grid>
+                                    </Expander.Header>
+                                    <ItemsPresenter />
+                                </Expander>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Grid.Resources>
+            <ListView FontWeight="Bold" Name="lb_ucenici" DisplayMemberPath="{Binding ElementName=memberCmb, Path=SelectedValue}">
+                <ListView.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource ContainerStyle}"/>
+                </ListView.GroupStyle>
+            </ListView>
+        </Grid>
+        <Grid DataContext="{Binding ElementName=lb_ucenici, Path=SelectedItem, Mode=TwoWay}" Name="contextGrid" Grid.Column="1" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Content="Maticni broj: " HorizontalAlignment="Right" Margin="5" Grid.Row="0" />
+                <Label Content="Broj u registru: " HorizontalAlignment="Right" Margin="5" Grid.Row="1" />
+                <Label Content="JMBG: " HorizontalAlignment="Right" Margin="5" Grid.Row="2" />
+                <Label Content="Prezime i ime: " HorizontalAlignment="Right" Margin="5" Grid.Row="3" />
+                <Label Content="Rodjen u: " HorizontalAlignment="Right" Margin="5" Grid.Row="4" />
+            <Label Content="Opština rođenja: " HorizontalAlignment="Right" Margin="5" Grid.Row="5" />
+                <Label Content="Datum rodjenja: " HorizontalAlignment="Right" Margin="5" Grid.Row="6" />
+                <Label Content="Prezime i ime oca: " HorizontalAlignment="Right" Margin="5" Grid.Row="7" />
+                <Label Content="Prezime i ime majke: " HorizontalAlignment="Right" Margin="5" Grid.Row="8" />
+                <Label Content="Upisan u (razred): " HorizontalAlignment="Right" Margin="5" Grid.Row="9" />
+                <Label Content="Redovan ucenik: " HorizontalAlignment="Right" Margin="5" Grid.Row="10" />
+                <Label Content="Smer: " HorizontalAlignment="Right" Margin="5" Grid.Row="11" />
+                <Label Content="Trajanje obrazovanja: " HorizontalAlignment="Right" Margin="5" Grid.Row="12" />
+            <Label Content="Izborni predmet" HorizontalAlignment="Right" Margin="5" Grid.Row="13" />
+
+            <TextBox GotFocus="txt1_GotFocus" LostFocus="txt1_LostFocus" VerticalAlignment="Center" Grid.Row="0" Name="txt1" Margin="5" Grid.Column="1" Text="{Binding Path=sbroj}"/>
+            <TextBox VerticalAlignment="Center" Grid.Row="1" Name="txt2" Margin="5" Grid.Column="1" Text="{Binding Path=brojReg}" />
+            <TextBox TextChanged="txt3_TextChanged" VerticalAlignment="Center" Grid.Row="2" Name="txt3" Margin="5" Grid.Column="1" Text="{Binding Path=sjmbg}" />
+            <TextBox VerticalAlignment="Center" Grid.Row="3" Name="txt4" Margin="5" Grid.Column="1" Text="{Binding Path=naziv}" />
+            <TextBox VerticalAlignment="Center" Grid.Row="4" Name="txt5" Margin="5" Grid.Column="1" Text="{Binding Path=mestoRodj}" />
+            <TextBox VerticalAlignment="Center" Grid.Row="5" Name="txt14" Margin="5" Grid.Column="1" Text="{Binding Path=opstinaRodj}" />
+                <TextBox VerticalAlignment="Center" Grid.Row="6" Name="txt6" Margin="5" Grid.Column="1" Text="{Binding Path=datumRodj}" />
+                <TextBox VerticalAlignment="Center" Grid.Row="7" Name="txt7" Margin="5" Grid.Column="1" Text="{Binding Path=otac}" />
+                <TextBox VerticalAlignment="Center" Grid.Row="8" Name="txt8" Margin="5" Grid.Column="1" Text="{Binding Path=majka}" />
+                <TextBox VerticalAlignment="Center" Grid.Row="9" Name="txt9" Margin="5" Grid.Column="1" Text="{Binding Path=upisanU}" />
+                <ComboBox VerticalAlignment="Center" Grid.Row="10" Name="txt10" Margin="5" Grid.Column="1" SelectedIndex="{Binding Path=redovan}">
+                    <ComboBoxItem Content="Vanredan" />
+                    <ComboBoxItem Content="Redovan" />
+                </ComboBox>
+                <ComboBox VerticalAlignment="Center" Grid.Row="11" Name="txt11" Margin="5" Grid.Column="1" SelectedValue="{Binding Path=smer.id}" DisplayMemberPath="naziv" SelectedValuePath="id" />
+                <TextBox VerticalAlignment="Center" Grid.Row="12" Name="txt12" Margin="5" Grid.Column="1" Text="{Binding Path=trajanje}" />
+            <ComboBox VerticalAlignment="Center" Grid.Row="13" Name="txt13" Margin="5" Grid.Column="1" SelectedIndex="{Binding Path=veronauka}">
+                <ComboBoxItem Content="Grаđansko vaspitanje" />
+                <ComboBoxItem Content="Veronauka" />
+            </ComboBox>
+            </Grid>
+            <WrapPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Name="wrap2">
+            <Button FontSize="15" Name="btnOk" Click="btnOk_Click" Margin="5">
+                <WrapPanel>
+                    <Image Source="slike/ok.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="OK " />
+                </WrapPanel>
+            </Button>
+            <Button FontSize="15" Name="btnCancel"  Click="btnCancel_Click" Margin="5">
+                <WrapPanel>
+                    <Image Source="slike/cancel.png" Width="26" />
+                    <TextBlock VerticalAlignment="Center" Text="Otkazi " />
+                </WrapPanel>
+            </Button>
+        </WrapPanel>
+                   
+           <Grid Background="White" Margin="5" Grid.Row="2">
+               <TextBlock Margin="5,2" MinWidth="50" Text="Pretraga..."  FontWeight="Bold" FontStyle="Italic"
+                  Foreground="Gray" Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}" />
+               <TextBox MinWidth="50" FontWeight="Bold" Foreground="Blue" Name="txtSearch" Background="Transparent" TextChanged="txtSearch_TextChanged" />
+           </Grid>
+        <ComboBox SelectionChanged="memberCmb_SelectionChanged" VerticalAlignment="Center" Margin="5" Name="memberCmb" SelectedIndex="0" DisplayMemberPath="naziv" SelectedValuePath="vrednost"/>
+
+    </Grid>
+</Window>

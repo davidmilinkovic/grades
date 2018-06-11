@@ -1,0 +1,46 @@
+﻿<Window x:Class="Ocene.Stampanje" WindowStartupLocation="CenterScreen" Background="SteelBlue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocene"
+        mc:Ignorable="d" FontSize="16"
+        Title="Stampanje" Height="600" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="5">
+            <WrapPanel>
+                <Label>Razred:</Label>
+                <ComboBox Name="cmbRazred" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cmbRazred_SelectionChanged" />
+            </WrapPanel>
+            <WrapPanel Name="wrOdelj" Visibility="Hidden">
+                <Label>Odeljenje:</Label>
+                <ComboBox Name="cmbOdeljenje" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="cmbOdeljenje_SelectionChanged" />
+            </WrapPanel>
+            
+        </WrapPanel>
+        <Border BorderBrush="Black" BorderThickness="0,0,0,1" />
+        <ListBox Name="lb" Grid.Row="1" Margin="5" SelectionMode="Extended" DisplayMemberPath="naziv" />
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="txtPath" IsReadOnly="True"  Margin="5,0,0,5" />
+            <Button Content=" ... "  Margin="5,0,5,5" Grid.Column="1" Name="btnPath" Click="btnPath_Click" />
+        </Grid>
+                
+        <Button Name="btnPrint" Click="btnPrint_Click" Grid.Row="3" Margin="5,0,5,5">
+            <WrapPanel>
+                <Image Source="slike/print.png" Width="26" />
+                <TextBlock VerticalAlignment="Center" Text="Stampaj" />
+            </WrapPanel>
+        </Button>
+    </Grid>
+</Window>

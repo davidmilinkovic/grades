@@ -1,0 +1,69 @@
+﻿<Window x:Class="Ocene.OceneWin" FontSize="16" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="LightGray"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocene"
+        mc:Ignorable="d"
+        Title="Ocene" Height="600" Width="800" >
+    <Window.Resources>
+        <Style x:Key="BorderedItem" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Name="Border" BorderBrush="Transparent" BorderThickness="2">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="5">
+            <WrapPanel>
+                <Label VerticalAlignment="Center">Razred:</Label>
+                <ComboBox VerticalAlignment="Center" Name="cmbRazred" SelectionChanged="cmbRazred_SelectionChanged" />
+            </WrapPanel>
+            <WrapPanel Name="wrOdelj" Visibility="Hidden">
+                <Label>Odeljenje:</Label>
+                <ComboBox VerticalAlignment="Center" Name="cmbOdeljenje" HorizontalAlignment="Left" SelectionChanged="cmbOdeljenje_SelectionChanged" />
+            </WrapPanel>
+            <Label Visibility="Hidden">Godina</Label>
+            <TextBox Name ="txtGod" Margin="5" Visibility="Hidden" />
+            <Button Content="Promeni godinu" Click="Button_Click" Margin="5" Visibility="Hidden" />
+        </WrapPanel>
+        <Label Name="lbSmer" FontWeight="Bold" Margin="5" HorizontalAlignment="Right" />
+        <Border BorderBrush="Black" Grid.Row="0" BorderThickness="0,0,0,1" />
+        <ListView Name="lvv" Grid.Row="1" Margin="5" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Ucenik">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0,0,1,1" BorderBrush="LightGray" Margin="-6,0,-6,0">
+                                    <TextBlock TextAlignment="Right" Margin="5" Text="{Binding Path=ime}" FontWeight="Bold" />
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button Name="btnCanc" Content="Opozovi izmene" Margin="5,0,5,5" Click="btnCanc_Click" />
+            <Button Name="btnSave" Content="Sacuvaj izmene" Margin="5,0,5,5" Click="btnSave_Click"  />
+        </WrapPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="Ocene.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" WindowStartupLocation="CenterScreen"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="16"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ocene"
+        mc:Ignorable="d"
+        Title="About" Height="244.897" Width="345.481">
+    <StackPanel Margin="20">
+        <WrapPanel>
+            <Label FontWeight="Black">Autor programa:</Label>
+            <Label>David Milinković 1-6</Label>
+        </WrapPanel>
+        <WrapPanel>
+            <Label FontWeight="Black">Mentor:</Label>
+            <Label>Goran Stanojević</Label>
+        </WrapPanel>
+        <WrapPanel>
+            <Label FontWeight="Black">Kontakt:</Label>
+            <Label>david.milinkovic@gmail.com</Label>
+        </WrapPanel>
+        <Label></Label>
+        <Label></Label>
+        <Label></Label>
+        <Label></Label>
+        <Label HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" FontStyle="Italic">jun 2017.</Label>
+    </StackPanel>
+</Window>
